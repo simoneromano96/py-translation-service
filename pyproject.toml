@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "py-translation-service"
+version = "0.0.0"
+description = ""
+authors = ["Simone Romano <simoneromano@protonmail.ch>"]
+readme = "README.md"
+packages = [{ include = "py_translation_service" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.103.2"
+transformers = "^4.34.0"
+orjson = "^3.9.7"
+uvicorn = "^0.23.2"
+celery = "^5.3.4"
+torch = { version = "^2.0.1", source = "pytorch-cpu" }
+optimum = "^1.13.2"
+pydantic = "^2.4.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"

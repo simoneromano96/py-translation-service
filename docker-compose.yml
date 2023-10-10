@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  queue:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: username
+      RABBITMQ_DEFAULT_PASS: password
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  flower:
+    image: mher/flower
+    command:
+      [
+        'celery',
+        '--broker=amqp://username:password@queue:5672/',
+        'flower'
+      ]
+    environment:
+      - FLOWER_BROKER_API_URL=http://username:password@rabbit:15672/api//
+    ports:
+      - 5555:5555
+    depends_on:
+      - queue
